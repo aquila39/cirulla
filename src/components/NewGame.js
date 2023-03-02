@@ -5,11 +5,12 @@ function NewGame() {
     const navigate = useNavigate();
 
     return (
-        <main>
-            <h1>Cirulla</h1>
+        <main className="text-center mx-auto">
+            <h1 className="text-uppercase fw-bold fs-1">Cirulla</h1>
+            <img src="/public/icon.webp" className="rounded d-block" alt="Cirulla icon" />
             <button className="btn btn-primary" type="submit">Nuova partita</button>
 
-            <div className="d-flex ">
+            <div className="d-flex mx-auto w">
                 <div className="col-3">
                     <label htmlFor="firstName" className="form-label">Nome Team A</label>
                     <input type="text" id="firstName" className="form-control" required />
