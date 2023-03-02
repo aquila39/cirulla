@@ -1,0 +1,2 @@
+# cirulla
+Scoreboard for Cirulla
