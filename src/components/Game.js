@@ -44,7 +44,7 @@ function Game() {
     const team2 = location.secondTeam;
 
     return (
-        <main className='text-center table'>
+        <main className='text-center table pt-3'>
 
             <h1>Cirulla - Partita</h1>
 
