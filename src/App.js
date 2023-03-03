@@ -6,7 +6,7 @@ import NewGame from './components/NewGame';
 function App() {
   return (
     <div className='App'>
-      {/* <NavBar /> */}
+      <NavBar />
       <Routes>
         <Route path='/' element={<NewGame />} />
         <Route path='/game' element={<Game />} />
