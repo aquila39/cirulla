@@ -1,4 +1,4 @@
-import useFetch from "./utility/Fetch";
+import useFetch from './utility/Fetch';
 
 function History() {
 

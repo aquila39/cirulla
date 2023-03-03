@@ -4,7 +4,8 @@
 body {
 
   font-family: Roboto, Open Sans;
-  background-image: url(/public/background.jpg);
+  /* background-image: url(/public/background.jpg); */
+  background-color: black;
   background-repeat: no-repeat, repeat;
   background-size: cover;
 
@@ -13,4 +14,14 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.blink {
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
 }
