@@ -3,6 +3,7 @@ import Game from './components/Game';
 import Home from './components/Home';
 import NavBar from './components/NavBar';
 import NewGame from './components/NewGame';
+import History from './components/History';
 
 function App() {
   return (
@@ -12,7 +13,8 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/newgame' element={<NewGame />} />
         <Route path='/game' element={<Game />} />
-        <Route path='*' element={null} />
+        <Route path='/history' element={<History />} />
+        <Route path='*' element={<h1>Not found!</h1>} />
       </Routes>
     </div>
   );
