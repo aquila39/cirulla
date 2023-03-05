@@ -27,27 +27,36 @@ function NewGame() {
 
             </div>
 
+            <div id='sameNameError' className='form-text text-danger mb-3' hidden>I team non possono avere lo stesso nome!</div>
+
             <button className='btn btn-primary' type='submit' onClick={() => {
                 let valid = true;
 
-                const first = document.getElementById('firstName').value;
-                const second = document.getElementById('secondName').value;
+                const first = document.getElementById('firstName').value.trim();
+                const second = document.getElementById('secondName').value.trim();
 
 
                 const firstError = document.getElementById('firstNameError');
                 const secondError = document.getElementById('secondNameError');
+                const sameError = document.getElementById('sameNameError');
 
-                if (first.trim() === '') {
+                if (first === '') {
                     firstError.hidden = false;
                     valid = false;
                 } else
                     firstError.hidden = true;
 
-                if (second.trim() === '') {
+                if (second === '') {
                     secondError.hidden = false;
                     valid = false;
                 } else
                     secondError.hidden = true;
+
+                if (first === second) {
+                    valid = false;
+                    sameError.hidden = false;
+                } else
+                    sameError.hidden = true;
 
 
                 if (valid) {
