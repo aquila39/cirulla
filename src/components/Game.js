@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom'
 import icon from '../img/icon.webp';
+import Scoreboard from './Scoreboard';
 
 function Game() {
 
@@ -18,9 +19,6 @@ function Game() {
         if (pointB < 0 || pointB > 100)
             setPointB(0);
 
-        lblA.innerHTML = pointA;
-        lblB.innerHTML = pointB;
-
         const check = checkWinner(pointA, pointB);
 
         if (check === 1)
@@ -35,77 +33,36 @@ function Game() {
 
     }, [pointA, pointB]);
 
+
     if (location == null)
         return (
             <h1>Invalid!</h1>
         );
-
-    const team1 = location.firstTeam;
-    const team2 = location.secondTeam;
 
     return (
         <main className='text-center table pt-3'>
 
             <h1>Cirulla - Partita</h1>
 
-            <img src={icon} className='rounded d-block mx-auto' alt='Cirulla icon' />
+            {/* <img src={icon} className='rounded d-block mx-auto' alt='Cirulla icon' /> */}
 
-            <div className='d-flex mt-3 text-light fs-1 text-uppercase'>
-                <div className='col-6'>
-                    <p className='text-break'>{team1}</p>
-                    <span id='lblPointA'>{pointA}</span>
+            <Scoreboard
+                pointA={pointA}
+                pointB={pointB}
+                setPointA={setPointA}
+                setPointB={setPointB}
+            />
 
-                    <div className='d-flex justify-content-center'>
-                        <div className='d-flex flex-column col-6 col-md-3'>
-                            <button type='button' className='btn btn-danger m-2 p-3 border border-dark fs-2' onClick={() => {
-                                setPointA(pointA - 1);
-                            }}>-1</button>
-                            <button type='button' className='btn btn-danger m-2 p-3 border border-dark fs-2' onClick={() => {
-                                setPointA(pointA - 10);
-                            }}>-10</button>
-                        </div>
-                        <div className='d-flex flex-column col-6 col-md-3'>
-                            <button type='button' className='btn btn-success m-2 p-3 border border-dark fs-2' onClick={() => {
-                                setPointA(pointA + 1);
-                            }}>+1</button>
-                            <button type='button' className='btn btn-success m-2 p-3 border border-dark fs-2' onClick={() => {
-                                setPointA(pointA + 10);
-                            }}>+10</button>
-                        </div>
-                    </div>
-                </div>
+            <div>
+                <button type="button" className='btn btn-danger mb-5 me-2' onClick={() => {
+                    setPointA(0);
+                    setPointB(0);
+                }}>RESET</button>
 
-                <div className='col-6'>
-                    <p className='text-break'>{team2}</p>
-                    <span id='lblPointB'>{pointB}</span>
+                <button type="button" className='btn btn-primary mb-5 ms-2' onClick={() => {
 
-                    <div className='d-flex justify-content-center'>
-                        <div className='d-flex flex-column col-6 col-md-3'>
-                            <button type='button' className='btn btn-danger m-2 p-3 border border-dark fs-2' onClick={() => {
-                                setPointB(pointB - 1);
-                            }}>-1</button>
-                            <button type='button' className='btn btn-danger m-2 p-3 border border-dark fs-2' onClick={() => {
-                                setPointB(pointB - 10);
-                            }}>-10</button>
-                        </div>
-                        <div className='d-flex flex-column col-6 col-md-3'>
-                            <button type='button' className='btn btn-success m-2 p-3 border border-dark fs-2' onClick={() => {
-                                setPointB(pointB + 1);
-                            }}>+1</button>
-                            <button type='button' className='btn btn-success m-2 p-3 border border-dark fs-2' onClick={() => {
-                                setPointB(pointB + 10);
-                            }}>+10</button>
-                        </div>
-                    </div>
-
-                </div>
-
+                }}>SALVA</button>
             </div>
-
-            <button type="button" className='btn btn-secondary mb-5' onClick={() => {
-                setPointA(0);
-                setPointB(0);
-            }}>Reset</button>
 
 
         </main>

@@ -58,10 +58,14 @@ function NewGame() {
                 } else
                     sameError.hidden = true;
 
-
                 if (valid) {
-
-                    navigate('/game', { state: { firstTeam: first, secondTeam: second } });
+                    navigate('/game', {
+                        state: {
+                            gameId: null,
+                            firstTeam: first,
+                            secondTeam: second
+                        }
+                    });
                 }
 
             }}>Avvia!</button>
@@ -69,5 +73,6 @@ function NewGame() {
         </main >
     );
 }
+
 
 export default NewGame;

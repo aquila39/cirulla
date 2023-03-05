@@ -1,11 +1,11 @@
 import useFetch from './utility/Fetch';
 import { Link } from "react-router-dom";
 import vs_logo from '../img/VS_logo.png';
+import { URL_HISTORY } from './utility/URL';
 
 function History() {
-    const url = 'http://principessedisney.duckdns.org:8000/api/games';
 
-    const { data, isPending, error } = useFetch(url);
+    const { data, isPending, error } = useFetch(URL_HISTORY);
 
     return (
         <div>
