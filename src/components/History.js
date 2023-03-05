@@ -13,10 +13,15 @@ function History() {
             {data && data.map(match => (
 
                 <Link to={'/history/' + match.id} key={match.id} className={'d-flex m-3 border'}>
-                    <p>{match.nameA}: </p>
-                    <p>{match.pointA} vs </p>
-                    <p>{match.nameB}: </p>
-                    <p>{match.pointB}</p>
+                    <div className='d-flex align-self-center my-0 mx-5 me-auto'>
+                        <p>{match.nameA}</p>
+                        <p>{match.pointA}</p>
+                    </div>
+
+                    <div className='d-flex align-self-center my-0 mx-5 ms-auto'>
+                        <p>{match.nameB}</p>
+                        <p>{match.pointB}</p>
+                    </div>
                 </Link>
 
             ))}

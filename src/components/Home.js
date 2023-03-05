@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import icon from '../icon.webp';
+import icon from '../img/icon.webp';
 
 function Home() {
 
