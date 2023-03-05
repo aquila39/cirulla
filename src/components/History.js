@@ -1,5 +1,6 @@
 import useFetch from './utility/Fetch';
 import { Link } from "react-router-dom";
+import vs_logo from '../img/VS_logo.png';
 
 function History() {
     const url = 'http://principessedisney.duckdns.org:8000/api/games';
@@ -12,15 +13,17 @@ function History() {
             {isPending && <div>Loading...</div>}
             {data && data.map(match => (
 
-                <Link to={'/history/' + match.id} key={match.id} className={'d-flex m-3 border'}>
-                    <div className='d-flex align-self-center my-0 mx-5 me-auto'>
+                <Link to={'/history/' + match.id} key={match.id} className={'d-flex border text-center m-3 py-2 px-4 justify-content-center align-items-center fs-4 text-decoration-none'} width={'100%'}>
+                    <div className='me-auto d-lg-inline-flex'>
                         <p>{match.nameA}</p>
-                        <p>{match.pointA}</p>
+                        <p className='ms-lg-5'>{match.pointA}</p>
                     </div>
 
-                    <div className='d-flex align-self-center my-0 mx-5 ms-auto'>
+                    <img src={vs_logo} alt='vs icon' className='mx-5' height='75px' />
+
+                    <div className='ms-auto d-lg-inline-flex flex-row-reverse'>
                         <p>{match.nameB}</p>
-                        <p>{match.pointB}</p>
+                        <p className='me-lg-5'>{match.pointB}</p>
                     </div>
                 </Link>
 
