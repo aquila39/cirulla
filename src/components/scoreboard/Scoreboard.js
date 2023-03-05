@@ -26,7 +26,6 @@ function Scoreboard(props) {
                 lbl={'lblPointB'}
             />
 
-
         </div >
     );
 }

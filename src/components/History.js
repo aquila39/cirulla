@@ -13,7 +13,7 @@ function History() {
             {isPending && <div>Loading...</div>}
             {data && data.map(match => (
 
-                <Link to={'/history/' + match.id} key={match.id} className={'d-flex border text-center m-3 py-2 px-4 justify-content-center align-items-center fs-4 text-decoration-none'} width={'100%'}>
+                <Link to={'/history/' + match.id} key={match.id} className={'d-flex border text-center m-3 py-2 px-4 justify-content-center align-items-center fs-4 text-decoration-none'}>
                     <div className='me-auto d-lg-inline-flex'>
                         <p>{match.nameA}</p>
                         <p className='ms-lg-5'>{match.pointA}</p>

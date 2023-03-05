@@ -7,6 +7,7 @@ function ScoreboardTeam(props) {
     return (
 
         <div className='col-6'>
+
             <p className='text-break'>{team}</p>
             <span id={lbl}>{point}</span>
 
