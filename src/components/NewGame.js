@@ -6,8 +6,8 @@ function NewGame() {
     const navigate = useNavigate();
 
     return (
-        <main className='text-center mx-auto pt-3'>
 
+        <main className='text-center mx-auto pt-3'>
             <h1 className='text-uppercase fw-bold fs-1'>Cirulla</h1>
 
             <img src={icon} className='rounded d-block mx-auto img-fluid mb-4' alt='Cirulla icon' />
@@ -52,7 +52,7 @@ function NewGame() {
                 } else
                     secondError.hidden = true;
 
-                if (first === second) {
+                if (valid && first === second) {
                     valid = false;
                     sameError.hidden = false;
                 } else
@@ -64,7 +64,7 @@ function NewGame() {
                     navigate('/game', { state: { firstTeam: first, secondTeam: second } });
                 }
 
-            }}>Nuova partita!</button>
+            }}>Avvia!</button>
 
         </main >
     );
