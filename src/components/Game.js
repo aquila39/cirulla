@@ -1,17 +1,25 @@
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import icon from '../img/icon.webp';
 import Scoreboard from './scoreboard/Scoreboard';
+import { URL_HISTORY, URL_NEXT_ID } from './utility/URL';
 
 function Game() {
 
-    const location = useLocation().state;
+    const state = useLocation().state;
+    const navigate = useNavigate();
+
     const [pointA, setPointA] = useState(0);
     const [pointB, setPointB] = useState(0);
+
+    const [gameId, setGameId] = useState(-1);
 
     useEffect(() => {
         const lblA = document.getElementById('lblPointA');
         const lblB = document.getElementById('lblPointB');
+
+        if (lblA === null || lblB === null)
+            return;
 
         if (pointA < 0 || pointA > 100)
             setPointA(0);
@@ -31,13 +39,17 @@ function Game() {
         else
             lblB.classList.remove('blink');
 
-    }, [pointA, pointB]);
+        async function update() {
+            setGameId(await updateMatch(gameId, state.firstTeam, state.secondTeam, pointA, pointB));
+        }
 
+        update();
 
-    if (location == null)
-        return (
-            <h1>Invalid!</h1>
-        );
+    }, [pointA, pointB, gameId, state.firstTeam, state.secondTeam]);
+
+    if (state === null) {
+        navigate('/newgame'); // TODO Warning and error
+    }
 
     return (
         <main className='text-center table pt-3'>
@@ -58,12 +70,7 @@ function Game() {
                     setPointA(0);
                     setPointB(0);
                 }}>RESET</button>
-
-                <button type="button" className='btn btn-primary mb-5 ms-2' onClick={() => {
-
-                }}>SALVA</button>
             </div>
-
 
         </main>
     );
@@ -84,6 +91,33 @@ function checkWinner(pointA, pointB) {
         return 2;
 
     return pointA > pointB ? 1 : 2;
+}
+
+async function updateMatch(id, nameA, nameB, pointA, pointB) {
+    const match = { id, nameA, nameB, pointA, pointB };
+    let type = 'PUT';
+
+    if (id === -1) {
+        match.id = await getNextId();
+        type = 'POST';
+    }
+
+    const res = await fetch(type === 'POST' ? URL_HISTORY : `${URL_HISTORY}/${match.id}`, {
+        method: type,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(match)
+    });
+
+    const json = await res.json();
+
+    return json.id;
+}
+
+async function getNextId() {
+    const response = await fetch(URL_NEXT_ID);
+    const json = await response.json();
+
+    return json[0].id + 1;
 }
 
 export default Game;

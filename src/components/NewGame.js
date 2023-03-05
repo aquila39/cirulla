@@ -61,7 +61,7 @@ function NewGame() {
                 if (valid) {
                     navigate('/game', {
                         state: {
-                            gameId: null,
+                            gameId: -1,
                             firstTeam: first,
                             secondTeam: second
                         }
