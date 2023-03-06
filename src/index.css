@@ -25,6 +25,10 @@ code {
   animation: blinker 1s linear infinite;
 }
 
+.blink-long {
+  animation: blinker 3s linear infinite;
+}
+
 @keyframes blinker {
   50% {
     opacity: 0;

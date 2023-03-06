@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom'
-import icon from '../img/icon.webp';
 import Scoreboard from './scoreboard/Scoreboard';
 import { URL_HISTORY, URL_NEXT_ID } from './utility/URL';
 
@@ -9,10 +8,10 @@ function Game() {
     const state = useLocation().state;
     const navigate = useNavigate();
 
-    const [pointA, setPointA] = useState(0);
-    const [pointB, setPointB] = useState(0);
-
-    const [gameId, setGameId] = useState(-1);
+    const [gameId, setGameId] = useState(state.gameId);
+    const [pointA, setPointA] = useState(state.firstPoint);
+    const [pointB, setPointB] = useState(state.secondPoint);
+    const [status, setStatus] = useState(state.status)
 
     useEffect(() => {
         const lblA = document.getElementById('lblPointA');
@@ -40,12 +39,12 @@ function Game() {
             lblB.classList.remove('blink');
 
         async function update() {
-            setGameId(await updateMatch(gameId, state.firstTeam, state.secondTeam, pointA, pointB));
+            setGameId(await updateMatch(gameId, state.firstTeam, state.secondTeam, pointA, pointB, status, setStatus));
         }
 
         update();
 
-    }, [pointA, pointB, gameId, state.firstTeam, state.secondTeam]);
+    }, [pointA, pointB, gameId, state.firstTeam, state.secondTeam, status]);
 
     if (state === null) {
         navigate('/newgame'); // TODO Warning and error
@@ -56,8 +55,6 @@ function Game() {
 
             <h1>Cirulla - Partita</h1>
 
-            {/* <img src={icon} className='rounded d-block mx-auto' alt='Cirulla icon' /> */}
-
             <Scoreboard
                 pointA={pointA}
                 pointB={pointB}
@@ -66,12 +63,15 @@ function Game() {
             />
 
             <div>
-                <button type="button" className='btn btn-danger mb-5 me-2' onClick={() => {
+                <button type="button" className='btn btn-danger border border-dark mb-5 me-2' onClick={() => {
                     setPointA(0);
                     setPointB(0);
                 }}>RESET</button>
-            </div>
+                <button type="button" className='btn btn-success border border-dark mb-5 me-2' onClick={() => {
+                    setStatus('end');
+                }}>SALVA</button>
 
+            </div>
         </main>
     );
 }
@@ -93,11 +93,11 @@ function checkWinner(pointA, pointB) {
     return pointA > pointB ? 1 : 2;
 }
 
-async function updateMatch(id, nameA, nameB, pointA, pointB) {
-    const match = { id, nameA, nameB, pointA, pointB };
+async function updateMatch(id, nameA, nameB, pointA, pointB, status, changeStatus) {
+    const match = { id, nameA, nameB, pointA, pointB, status };
     let type = 'PUT';
 
-    if (id === -1) {
+    if (status === 'start') {
         match.id = await getNextId();
         type = 'POST';
     }
@@ -109,6 +109,9 @@ async function updateMatch(id, nameA, nameB, pointA, pointB) {
     });
 
     const json = await res.json();
+
+    if (status !== 'end')
+        changeStatus('in-progress');
 
     return json.id;
 }

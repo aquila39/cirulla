@@ -63,7 +63,10 @@ function NewGame() {
                         state: {
                             gameId: -1,
                             firstTeam: first,
-                            secondTeam: second
+                            secondTeam: second,
+                            firstPoint: 0,
+                            secondPoint: 0,
+                            status: 'start'
                         }
                     });
                 }
