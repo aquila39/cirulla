@@ -5,7 +5,7 @@ import { URL_HISTORY } from './utility/URL';
 
 function History() {
 
-    const { data, isPending, error } = useFetch(URL_HISTORY);
+    const { data, isPending, error } = useFetch(`${URL_HISTORY}?_sort=id&_order=desc`);
 
     return (
         <div>
