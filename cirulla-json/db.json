@@ -1,0 +1,52 @@
+{
+  "games": [
+    {
+      "id": 1,
+      "nameA": "MatteoA",
+      "nameB": "MatteoB",
+      "pointA": 53,
+      "pointB": 48,
+      "status": "end"
+    },
+    {
+      "id": 2,
+      "nameA": "MatteoC",
+      "nameB": "MatteoD",
+      "pointA": 23,
+      "pointB": 56,
+      "status": "in-progress"
+    },
+    {
+      "id": 3,
+      "nameA": "Principessesulpisello",
+      "nameB": "Principicolpisello",
+      "pointA": 65,
+      "pointB": 79,
+      "status": "end"
+    },
+    {
+      "id": 4,
+      "nameA": "Anziani",
+      "nameB": "Feti",
+      "pointA": 45,
+      "pointB": 54,
+      "status": "end"
+    },
+    {
+      "id": 5,
+      "nameA": "Ciao",
+      "nameB": "Aquila",
+      "pointA": 0,
+      "pointB": 0,
+      "status": "in-progress"
+    },
+    {
+      "id": 6,
+      "nameA": "Ciao",
+      "nameB": "Aquila",
+      "pointA": 0,
+      "pointB": 0,
+      "status": "in-progress"
+    }
+  ]
+}
