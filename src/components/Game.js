@@ -3,10 +3,13 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import Scoreboard from './scoreboard/Scoreboard';
 import { URL_HISTORY, URL_NEXT_ID } from './utility/URL';
 
-function Game() {
+function Game(props) {
 
     const state = useLocation().state;
     const navigate = useNavigate();
+
+    console.log(state);
+    console.log(props);
 
     const [gameId, setGameId] = useState(state.gameId);
     const [pointA, setPointA] = useState(state.firstPoint);
@@ -43,6 +46,7 @@ function Game() {
         }
 
         update();
+
 
     }, [pointA, pointB, gameId, state.firstTeam, state.secondTeam, status]);
 
@@ -93,10 +97,11 @@ function checkWinner(pointA, pointB) {
     return pointA > pointB ? 1 : 2;
 }
 
-async function updateMatch(id, nameA, nameB, pointA, pointB, status, changeStatus) {
+async function updateMatch(id, nameA, nameB, pointA, pointB, status, setFun) {
     const match = { id, nameA, nameB, pointA, pointB, status };
     let type = 'PUT';
 
+    console.log(status);
     if (status === 'start') {
         match.id = await getNextId();
         type = 'POST';
@@ -110,8 +115,8 @@ async function updateMatch(id, nameA, nameB, pointA, pointB, status, changeStatu
 
     const json = await res.json();
 
-    if (status !== 'end')
-        changeStatus('in-progress');
+    if (status === 'start')
+        setFun('in-progress');
 
     return json.id;
 }

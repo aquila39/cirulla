@@ -13,7 +13,21 @@ function History() {
             {isPending && <div>Loading...</div>}
             {data && data.map(match => (
 
-                <Link to={'/history/' + match.id} key={match.id} className={`d-flex border text-center m-3 py-2 px-4 justify-content-center align-items-center fs-4 text-decoration-none ${match.status === 'end' ? 'bg-success' : 'bg-warning blink-long'}`}>
+                <Link
+                    to={match.status === "end" ? `/history/${match.id}` : '/game'}
+                    state={{
+                        gameId: match.id,
+                        firstTeam: match.nameA,
+                        secondTeam: match.nameB,
+                        firstPoint: match.pointA,
+                        secondPoint: match.pointB,
+                        status: match.status
+                    }}
+
+                    key={match.id}
+                    className={`d-flex border text-center m-3 py-2 px-4 justify-content-center align-items-center fs-4 text-decoration-none ${match.status === 'end' ? 'bg-success' : 'bg-warning blink-long'}`
+                    }>
+
                     <div className='me-auto d-lg-inline-flex'>
                         <p>{match.nameA}</p>
                         <p className='ms-lg-5'>{match.pointA}</p>
@@ -27,8 +41,9 @@ function History() {
                     </div>
                 </Link>
 
-            ))}
-        </div>
+            ))
+            }
+        </div >
     );
 }
 
