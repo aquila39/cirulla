@@ -65,7 +65,11 @@ function Game(props) {
             />
 
             <div>
-                <button type="button" className='btn btn-danger border border-dark mb-5 me-2' onClick={() => {
+                <button type="button" className='btn btn-danger border border-dark mb-5 me-2' data-bs-toggle="modal" data-bs-target="#deleteModal">
+                    ELIMINA
+                </button>
+
+                <button type="button" className='btn btn-secondary border border-dark mb-5 me-2' onClick={() => {
                     setPointA(0);
                     setPointB(0);
                 }}>RESET</button>
@@ -73,11 +77,6 @@ function Game(props) {
                 <button type="button" className='btn btn-success border border-dark mb-5 me-2' data-bs-toggle="modal" data-bs-target="#saveModal">
                     SALVA
                 </button>
-
-                <button type="button" className='btn btn-danger border border-dark mb-5 me-2' data-bs-toggle="modal" data-bs-target="#deleteModal">
-                    ELIMINA
-                </button>
-
             </div>
 
             <Modal
@@ -96,8 +95,8 @@ function Game(props) {
                 body={'Vuoi davvero eliminare la partita?'}
                 cancelText={'Annulla'}
                 confirmColor={'danger'}
-                confirmText={'Elmina'}
-                confirmFunction={() => console.log('delete')}
+                confirmText={'Elimina'}
+                confirmFunction={() => deleteMatch(gameId)}
             />
 
         </main>
@@ -142,6 +141,17 @@ async function updateMatch(id, nameA, nameB, pointA, pointB, status, setFun) {
         setFun('in-progress');
 
     return json.id;
+}
+
+async function deleteMatch(id) {
+    const res = await fetch(`${URL_HISTORY}/${id}`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+    });
+
+    const json = await res.json();
+
+    return json;
 }
 
 async function getNextId() {
