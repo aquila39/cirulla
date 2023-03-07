@@ -175,9 +175,9 @@ function TurnSet() {
             <hr />
 
             <TurnSetRow
-                col1={<span className='fs-5'>{point1}</span>}
+                col1={<span id='turnSetPointA' className='fs-5'>{point1}</span>}
                 col2={null}
-                col3={<span className='fs-5'>{point2}</span>}
+                col3={<span id='turnSetPointB' className='fs-5'>{point2}</span>}
             />
 
         </div>

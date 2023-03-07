@@ -13,7 +13,7 @@ function Modal(props) {
                         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label={cancelText} />
                     </div>
                     <div className="modal-body">
-                        <p>{body}</p>
+                        <span>{body}</span>
                     </div>
                     <div className="modal-footer">
                         <button type="button" id={`${id}Dismiss`} className="btn btn-secondary" data-bs-dismiss="modal">{cancelText}</button>
@@ -35,6 +35,8 @@ function Modal(props) {
 }
 
 function event(modalId, funct) {
+
+    // TODO Fix close
     // const modal = Modal.getInstance(modalId);
     // modal.hide();
 

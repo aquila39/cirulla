@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom'
-import Modal from '../Modal';
+import Modal from './Modal';
 import Scoreboard from './scoreboard/Scoreboard';
 import TurnSet from './set/TurnSet';
 import { URL_HISTORY, URL_NEXT_ID } from './utility/URL';
@@ -123,7 +123,7 @@ function Game() {
                 cancelText={'Annulla'}
                 confirmColor={'success'}
                 confirmText={'Salva'}
-                confirmFunction={() => pushSet()}
+                confirmFunction={() => saveSet(pointA, setPointA, pointB, setPointB)}
             />
 
         </main>
@@ -147,9 +147,12 @@ function checkWinner(pointA, pointB) {
     return pointA > pointB ? 1 : 2;
 }
 
-async function pushSet(id, set) {
+function saveSet(pointA, setPointA, pointB, setPointB) {
+    const point1 = parseInt(document.getElementById('turnSetPointA').innerText);
+    const point2 = parseInt(document.getElementById('turnSetPointB').innerText);
 
-
+    setPointA(pointA + point1);
+    setPointB(pointB + point2);
 }
 
 async function updateMatch(id, nameA, nameB, pointA, pointB, status, setFun) {
@@ -180,6 +183,8 @@ async function deleteMatch(id) {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
     });
+
+    // TODO Set history
 
     const json = await res.json();
 
