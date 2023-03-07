@@ -14,7 +14,7 @@
       "nameB": "MatteoD",
       "pointA": 23,
       "pointB": 56,
-      "status": "in-progress"
+      "status": "end"
     },
     {
       "id": 3,
@@ -31,22 +31,6 @@
       "pointA": 45,
       "pointB": 54,
       "status": "end"
-    },
-    {
-      "id": 5,
-      "nameA": "Ciao",
-      "nameB": "Aquila",
-      "pointA": 0,
-      "pointB": 0,
-      "status": "in-progress"
-    },
-    {
-      "id": 6,
-      "nameA": "Ciao",
-      "nameB": "Aquila",
-      "pointA": 0,
-      "pointB": 0,
-      "status": "in-progress"
     }
   ]
 }

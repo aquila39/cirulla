@@ -1,3 +1,10 @@
+# TODO List
+- Add delete match if in progress
+- After save
+- Game set
+- Fix error on new game create
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

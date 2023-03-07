@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom'
+import Modal from '../Modal';
 import Scoreboard from './scoreboard/Scoreboard';
 import { URL_HISTORY, URL_NEXT_ID } from './utility/URL';
 
@@ -7,9 +8,6 @@ function Game(props) {
 
     const state = useLocation().state;
     const navigate = useNavigate();
-
-    console.log(state);
-    console.log(props);
 
     const [gameId, setGameId] = useState(state.gameId);
     const [pointA, setPointA] = useState(state.firstPoint);
@@ -71,11 +69,22 @@ function Game(props) {
                     setPointA(0);
                     setPointB(0);
                 }}>RESET</button>
-                <button type="button" className='btn btn-success border border-dark mb-5 me-2' onClick={() => {
-                    setStatus('end');
-                }}>SALVA</button>
+                <button type="button" className='btn btn-success border border-dark mb-5 me-2' data-bs-toggle="modal" data-bs-target="#saveModal">
+                    SALVA
+                </button>
 
             </div>
+
+            <Modal
+                id={'saveModal'}
+                title={'Conferma'}
+                body={'Vuoi davvero salvare la partita?'}
+                cancelText={'Annulla'}
+                confirmColor={'success'}
+                confirmText={'Salva'}
+                confirmFunction={() => setStatus('end')}
+            />
+
         </main>
     );
 }
@@ -101,7 +110,6 @@ async function updateMatch(id, nameA, nameB, pointA, pointB, status, setFun) {
     const match = { id, nameA, nameB, pointA, pointB, status };
     let type = 'PUT';
 
-    console.log(status);
     if (status === 'start') {
         match.id = await getNextId();
         type = 'POST';
