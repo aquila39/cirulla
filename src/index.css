@@ -21,6 +21,10 @@ code {
   background-size: cover;
 }
 
+.cursor {
+  cursor: pointer;
+}
+
 .blink {
   animation: blinker 1s linear infinite;
 }

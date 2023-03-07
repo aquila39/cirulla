@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom'
 import Modal from '../Modal';
 import Scoreboard from './scoreboard/Scoreboard';
+import TurnSet from './set/TurnSet';
 import { URL_HISTORY, URL_NEXT_ID } from './utility/URL';
 
 function Game(props) {
@@ -64,20 +65,46 @@ function Game(props) {
                 setPointB={setPointB}
             />
 
+            <button type="button" className='btn btn-primary border border-dark mb-3 me-2' data-bs-toggle="modal" data-bs-target="#newModal">
+                Nuovo turno
+            </button>
+
             <div>
                 <button type="button" className='btn btn-danger border border-dark mb-5 me-2' data-bs-toggle="modal" data-bs-target="#deleteModal">
                     ELIMINA
                 </button>
 
-                <button type="button" className='btn btn-secondary border border-dark mb-5 me-2' onClick={() => {
-                    setPointA(0);
-                    setPointB(0);
-                }}>RESET</button>
+                <button type="button" className='btn btn-secondary border border-dark mb-5 me-2' data-bs-toggle="modal" data-bs-target="#resetModal">
+                    RESET
+                </button>
 
                 <button type="button" className='btn btn-success border border-dark mb-5 me-2' data-bs-toggle="modal" data-bs-target="#saveModal">
                     SALVA
                 </button>
             </div>
+
+            <Modal
+                id={'deleteModal'}
+                title={'Conferma'}
+                body={'Vuoi davvero eliminare la partita?'}
+                cancelText={'Annulla'}
+                confirmColor={'danger'}
+                confirmText={'Elimina'}
+                confirmFunction={() => deleteMatch(gameId)}
+            />
+
+            <Modal
+                id={'resetModal'}
+                title={'Conferma'}
+                body={'Vuoi davvero resettare il punteggio?'}
+                cancelText={'Annulla'}
+                confirmColor={'danger'}
+                confirmText={'Reset'}
+                confirmFunction={() => {
+                    setPointA(0);
+                    setPointB(0);
+                }}
+            />
 
             <Modal
                 id={'saveModal'}
@@ -90,13 +117,13 @@ function Game(props) {
             />
 
             <Modal
-                id={'deleteModal'}
-                title={'Conferma'}
-                body={'Vuoi davvero eliminare la partita?'}
+                id={'newModal'}
+                title={'Nuovo turno'}
+                body={<TurnSet />}
                 cancelText={'Annulla'}
-                confirmColor={'danger'}
-                confirmText={'Elimina'}
-                confirmFunction={() => deleteMatch(gameId)}
+                confirmColor={'success'}
+                confirmText={'Salva'}
+                confirmFunction={() => setStatus('end')}
             />
 
         </main>

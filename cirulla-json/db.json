@@ -31,6 +31,14 @@
       "pointA": 45,
       "pointB": 54,
       "status": "end"
+    },
+    {
+      "id": 5,
+      "nameA": "TestTurnoA",
+      "nameB": "TestTurnoB",
+      "pointA": 0,
+      "pointB": 0,
+      "status": "in-progress"
     }
   ]
 }
