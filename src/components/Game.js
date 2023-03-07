@@ -69,8 +69,13 @@ function Game(props) {
                     setPointA(0);
                     setPointB(0);
                 }}>RESET</button>
+
                 <button type="button" className='btn btn-success border border-dark mb-5 me-2' data-bs-toggle="modal" data-bs-target="#saveModal">
                     SALVA
+                </button>
+
+                <button type="button" className='btn btn-danger border border-dark mb-5 me-2' data-bs-toggle="modal" data-bs-target="#deleteModal">
+                    ELIMINA
                 </button>
 
             </div>
@@ -83,6 +88,16 @@ function Game(props) {
                 confirmColor={'success'}
                 confirmText={'Salva'}
                 confirmFunction={() => setStatus('end')}
+            />
+
+            <Modal
+                id={'deleteModal'}
+                title={'Conferma'}
+                body={'Vuoi davvero eliminare la partita?'}
+                cancelText={'Annulla'}
+                confirmColor={'danger'}
+                confirmText={'Elmina'}
+                confirmFunction={() => console.log('delete')}
             />
 
         </main>
