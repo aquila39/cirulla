@@ -5,7 +5,7 @@ import Scoreboard from './scoreboard/Scoreboard';
 import TurnSet from './set/TurnSet';
 import { URL_HISTORY, URL_NEXT_ID } from './utility/URL';
 
-function Game(props) {
+function Game() {
 
     const state = useLocation().state;
     const navigate = useNavigate();
@@ -123,7 +123,7 @@ function Game(props) {
                 cancelText={'Annulla'}
                 confirmColor={'success'}
                 confirmText={'Salva'}
-                confirmFunction={() => setStatus('end')}
+                confirmFunction={() => pushSet()}
             />
 
         </main>
@@ -145,6 +145,11 @@ function checkWinner(pointA, pointB) {
         return 2;
 
     return pointA > pointB ? 1 : 2;
+}
+
+async function pushSet(id, set) {
+
+
 }
 
 async function updateMatch(id, nameA, nameB, pointA, pointB, status, setFun) {
