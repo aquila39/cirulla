@@ -1,11 +1,11 @@
-// import bootstrap from bootstrap;
+// const bootstrap = require('bootstrap');
 
 function Modal(props) {
 
     const { id, title, body, cancelText, confirmColor, confirmText, confirmFunction } = { ...props };
 
     return (
-        <div className="modal" id={id} tabIndex="-1">
+        <div className="modal fade" id={id} tabIndex="-1">
             <div className="modal-dialog bg-light rounded">
                 <div className="modal-content">
                     <div className="modal-header">
@@ -37,8 +37,9 @@ function Modal(props) {
 function event(modalId, funct) {
 
     // TODO Fix close
-    // const modal = Modal.getInstance(modalId);
-    // modal.hide();
+
+
+    // modalInstance.hide()
 
     funct();
 }
