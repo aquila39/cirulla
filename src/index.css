@@ -1,9 +1,9 @@
-/* @import url('https://fonts.google.com/download?family=Roboto&display=swap');
-@import url('https://fonts.google.com/download?family=Open+Sans&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap');
 
-body {
-
-  font-family: Roboto, Open Sans;
+body, html {
+    font-family: 'Roboto', sans-serif;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
 }
 
 code {

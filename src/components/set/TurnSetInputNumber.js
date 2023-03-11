@@ -14,7 +14,7 @@ function TurnSetRowNumber(props) {
                         updatePoint(point - amount);
                     }
                 }}>-</label>
-                <input type="number" className="form-control text-center p-0" value={count} />
+                <input type="number" className="form-control text-center p-0" value={count} readOnly />
                 <label className="input-group-text cursor" onClick={() => {
                     if (count < 100) {
                         setCount(count + amount);
