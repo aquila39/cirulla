@@ -9,13 +9,19 @@ import { checkWinner, getNextId } from './utility/Utility';
 
 function Game() {
 
-    const state = useLocation().state;
+    let state = useLocation().state;
     const navigate = useNavigate();
+
+    if (state === null) {
+        state = {};
+    }
 
     const [gameId, setGameId] = useState(state.gameId);
     const [pointA, setPointA] = useState(state.firstPoint);
     const [pointB, setPointB] = useState(state.secondPoint);
     const [status, setStatus] = useState(state.status);
+    const firstTeam = state.firstTeam;
+    const secondTeam = state.secondTeam;
 
     // Modal
     const [showModalDelete, setShowModalDelete] = useState(false);
@@ -23,7 +29,24 @@ function Game() {
     const [showModalSave, setShowModalSave] = useState(false);
     const [showModalSet, setShowModalSet] = useState(false);
 
+
     useEffect(() => {
+        if (gameId === undefined) {
+            navigate('/newgame');
+            return;
+        }
+
+        async function create() {
+            setGameId(await createMatch(firstTeam, secondTeam));
+        }
+
+        if (gameId === -1)
+            create();
+
+    }, [gameId]);
+
+    useEffect(() => {
+
         const lblA = document.getElementById('lblPointA');
         const lblB = document.getElementById('lblPointB');
 
@@ -49,16 +72,12 @@ function Game() {
             lblB.classList.remove('blink');
 
         async function update() {
-            setGameId(await updateMatch(gameId, state.firstTeam, state.secondTeam, pointA, pointB, status, setStatus));
+            await updateMatch(gameId, firstTeam, secondTeam, pointA, pointB, status);
         }
 
         update();
 
-    }, [pointA, pointB, gameId, state.firstTeam, state.secondTeam, status]);
-
-    if (state === null) {
-        navigate('/newgame'); // TODO Warning and error
-    }
+    }, [pointA, pointB, status]);
 
     return (
         <main className='text-center table pt-3'>
@@ -66,6 +85,8 @@ function Game() {
             <h1><b>Cirulla - Partita</b></h1>
 
             <Scoreboard
+                teamA={firstTeam}
+                teamB={secondTeam}
                 pointA={pointA}
                 pointB={pointB}
                 setPointA={setPointA}
@@ -161,27 +182,38 @@ function saveSet(pointA, setPointA, pointB, setPointB) {
     setPointB(pointB + point2);
 }
 
-async function updateMatch(id, nameA, nameB, pointA, pointB, status, setFun) {
-    const match = { id, nameA, nameB, pointA, pointB, status };
-    let type = 'PUT';
+async function createMatch(nameA, nameB) {
+    const match = { id: -1, nameA, nameB, pointA: 0, pointB: 0, status: 'in-progress' };
 
-    if (status === 'start') {
-        match.id = await getNextId();
-        type = 'POST';
-    }
+    match.id = await getNextId();
 
-    const res = await fetch(type === 'POST' ? URL_HISTORY : `${URL_HISTORY}/${match.id}`, {
-        method: type,
+    const res = await fetch(URL_HISTORY, {
+        method: 'POST',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(match)
     });
 
     const json = await res.json();
 
-    if (status === 'start')
-        setFun('in-progress');
+    console.log(res);
 
     return json.id;
+}
+
+async function updateMatch(id, nameA, nameB, pointA, pointB, status) {
+    const match = { id, nameA, nameB, pointA, pointB, status };
+
+    if (id === undefined || id === -1)
+        return;
+
+    const res = await fetch(`${URL_HISTORY}/${match.id}`, {
+        method: 'PUT',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(match)
+    });
+
+    if (!res.ok)
+        console.error(res.message);
 }
 
 async function deleteMatch(id) {
