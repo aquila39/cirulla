@@ -4,13 +4,15 @@
 body {
 
   font-family: Roboto, Open Sans;
-
-
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+a {
+  color: #000;
 }
 
 .table {
@@ -19,6 +21,16 @@ code {
   background-image: url('/public/background.jpg');
   background-repeat: no-repeat, repeat;
   background-size: cover;
+}
+
+/* Disable input number arrow */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type=number]{
+  -moz-appearance: textfield;
 }
 
 .cursor {
