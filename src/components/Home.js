@@ -9,7 +9,7 @@ function Home() {
 
             <img src={icon} className='rounded d-block mx-auto img-fluid mb-4' alt='Cirulla icon' />
 
-            <p>Ecco il gioco bla bla bla</p>
+            <p>Premi il bottone per iniziare!</p>
 
             <Link to={'/newgame'} className={'btn btn-primary text-decoration-none'}>Nuova partita</Link>
 

@@ -1,7 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap');
+@font-face {
+  font-family: "Sunflower";
+  src: url('./css/Sunflower-Light.ttf');
+}
+
 
 body, html {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Sunflower', 'Roboto', sans-serif;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
 }

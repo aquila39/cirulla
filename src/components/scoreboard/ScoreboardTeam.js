@@ -19,12 +19,6 @@ function ScoreboardTeam(props) {
                             setPoint(point - 1))}
                         lbl='-1'
                     />
-                    <ScoreboardTeamButton
-                        colorType='danger'
-                        functionOperation={() => (
-                            setPoint(point - 10))}
-                        lbl='-10'
-                    />
                 </div>
                 <div className='d-flex flex-column col-6 col-md-3'>
                     <ScoreboardTeamButton
@@ -32,12 +26,6 @@ function ScoreboardTeam(props) {
                         functionOperation={() => (
                             setPoint(point + 1))}
                         lbl='+1'
-                    />
-                    <ScoreboardTeamButton
-                        colorType='success'
-                        functionOperation={() => (
-                            setPoint(point + 10))}
-                        lbl='+10'
                     />
                 </div>
             </div>

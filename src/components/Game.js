@@ -63,7 +63,7 @@ function Game() {
     return (
         <main className='text-center table pt-3'>
 
-            <h1>Cirulla - Partita</h1>
+            <h1><b>Cirulla - Partita</b></h1>
 
             <Scoreboard
                 pointA={pointA}
@@ -75,10 +75,6 @@ function Game() {
             <Button className='border border-dark mb-3 me-2' variant="primary" onClick={() => setShowModalSet(true)}>
                 Nuovo turno
             </Button>
-
-            {/* <button type="button" className='btn btn-primary border border-dark mb-3 me-2' data-bs-toggle="modalTeModalTemplate" data-bs-target="#newModalTemplate">
-                Nuovo turno
-            </button> */}
 
             <div>
                 <Button className='border border-dark mb-3 me-2' variant="danger" onClick={() => setShowModalDelete(true)}>
@@ -103,7 +99,12 @@ function Game() {
                 cancelText={'Annulla'}
                 confirmColor={'danger'}
                 confirmText={'Elimina'}
-                confirmFunction={() => deleteMatch(gameId)}
+                confirmFunction={async () => {
+                    const res = await deleteMatch(gameId);
+                    if (res.ok)
+                        navigate('/newgame');
+                    else console.error('Failed delete');
+                }}
             />
 
             <ModalTemplate
@@ -130,7 +131,10 @@ function Game() {
                 cancelText={'Annulla'}
                 confirmColor={'success'}
                 confirmText={'Salva'}
-                confirmFunction={() => setStatus('end')}
+                confirmFunction={() => {
+                    setStatus('end')
+                    navigate(`/history/${gameId}`)
+                }}
             />
 
             <ModalTemplate
@@ -181,16 +185,13 @@ async function updateMatch(id, nameA, nameB, pointA, pointB, status, setFun) {
 }
 
 async function deleteMatch(id) {
+
     const res = await fetch(`${URL_HISTORY}/${id}`, {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
     });
 
-    // TODO Delete set history
-
-    const json = await res.json();
-
-    return json;
+    return res;
 }
 
 export default Game;

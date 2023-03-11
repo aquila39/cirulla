@@ -9,6 +9,8 @@ function NavBar() {
                 Cirulla
             </Link>
 
+            <Link to={'/newgame'} className={'text-decoration-none fw-bold fs-3'}>Nuova partita</Link>
+
             <Link to={'/history'} className={'text-decoration-none fw-bold fs-3'}>Storico</Link>
 
         </header>
