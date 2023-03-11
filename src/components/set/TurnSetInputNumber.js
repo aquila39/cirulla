@@ -7,7 +7,7 @@ function TurnSetRowNumber(props) {
 
     return (
         <span>
-            <div className="input-group">
+            <div className="input-group my-1">
                 <label className="input-group-text cursor" onClick={() => {
                     if (count > 0) {
                         setCount(count - amount);
