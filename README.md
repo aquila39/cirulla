@@ -1,6 +1,4 @@
 # TODO List
-- Add delete match if in progress
-- After save and delete
 - Game set
 - Fix error on new game create
 

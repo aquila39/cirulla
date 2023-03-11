@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom'
-import Modal from './Modal';
+import { Button } from "react-bootstrap";
+import ModalTemplate from './ModalTemplate';
 import Scoreboard from './scoreboard/Scoreboard';
 import TurnSet from './set/TurnSet';
-import { URL_HISTORY, URL_NEXT_ID } from './utility/URL';
+import { URL_HISTORY } from './utility/URL';
+import { checkWinner, getNextId } from './utility/Utility';
 
 function Game() {
 
@@ -13,7 +15,13 @@ function Game() {
     const [gameId, setGameId] = useState(state.gameId);
     const [pointA, setPointA] = useState(state.firstPoint);
     const [pointB, setPointB] = useState(state.secondPoint);
-    const [status, setStatus] = useState(state.status)
+    const [status, setStatus] = useState(state.status);
+
+    // Modal
+    const [showModalDelete, setShowModalDelete] = useState(false);
+    const [showModalReset, setShowModalReset] = useState(false);
+    const [showModalSave, setShowModalSave] = useState(false);
+    const [showModalSet, setShowModalSet] = useState(false);
 
     useEffect(() => {
         const lblA = document.getElementById('lblPointA');
@@ -46,7 +54,6 @@ function Game() {
 
         update();
 
-
     }, [pointA, pointB, gameId, state.firstTeam, state.secondTeam, status]);
 
     if (state === null) {
@@ -65,26 +72,32 @@ function Game() {
                 setPointB={setPointB}
             />
 
-            <button type="button" className='btn btn-primary border border-dark mb-3 me-2' data-bs-toggle="modal" data-bs-target="#newModal">
+            <Button className='border border-dark mb-3 me-2' variant="primary" onClick={() => setShowModalSet(true)}>
                 Nuovo turno
-            </button>
+            </Button>
+
+            {/* <button type="button" className='btn btn-primary border border-dark mb-3 me-2' data-bs-toggle="modalTeModalTemplate" data-bs-target="#newModalTemplate">
+                Nuovo turno
+            </button> */}
 
             <div>
-                <button type="button" className='btn btn-danger border border-dark mb-5 me-2' data-bs-toggle="modal" data-bs-target="#deleteModal">
+                <Button className='border border-dark mb-3 me-2' variant="danger" onClick={() => setShowModalDelete(true)}>
                     ELIMINA
-                </button>
+                </Button>
 
-                <button type="button" className='btn btn-secondary border border-dark mb-5 me-2' data-bs-toggle="modal" data-bs-target="#resetModal">
+                <Button className='border border-dark mb-3 me-2' variant="secondary" onClick={() => setShowModalReset(true)}>
                     RESET
-                </button>
+                </Button>
 
-                <button type="button" className='btn btn-success border border-dark mb-5 me-2' data-bs-toggle="modal" data-bs-target="#saveModal">
+                <Button className='border border-dark mb-3 me-2' variant="success" onClick={() => setShowModalSave(true)}>
                     SALVA
-                </button>
+                </Button>
             </div>
 
-            <Modal
-                id={'deleteModal'}
+            <ModalTemplate
+                show={showModalDelete}
+                setShow={setShowModalDelete}
+                id={'deleteModalTemplate'}
                 title={'Conferma'}
                 body={'Vuoi davvero eliminare la partita?'}
                 cancelText={'Annulla'}
@@ -93,8 +106,10 @@ function Game() {
                 confirmFunction={() => deleteMatch(gameId)}
             />
 
-            <Modal
-                id={'resetModal'}
+            <ModalTemplate
+                show={showModalReset}
+                setShow={setShowModalReset}
+                id={'resetModalTemplate'}
                 title={'Conferma'}
                 body={'Vuoi davvero resettare il punteggio?'}
                 cancelText={'Annulla'}
@@ -106,8 +121,10 @@ function Game() {
                 }}
             />
 
-            <Modal
-                id={'saveModal'}
+            <ModalTemplate
+                show={showModalSave}
+                setShow={setShowModalSave}
+                id={'saveModalTemplate'}
                 title={'Conferma'}
                 body={'Vuoi davvero salvare la partita?'}
                 cancelText={'Annulla'}
@@ -116,8 +133,10 @@ function Game() {
                 confirmFunction={() => setStatus('end')}
             />
 
-            <Modal
-                id={'newModal'}
+            <ModalTemplate
+                show={showModalSet}
+                setShow={setShowModalSet}
+                id={'newModalTemplate'}
                 title={'Nuovo turno'}
                 body={<TurnSet />}
                 cancelText={'Annulla'}
@@ -128,23 +147,6 @@ function Game() {
 
         </main>
     );
-}
-
-function checkWinner(pointA, pointB) {
-
-    if (pointA < 51 && pointB < 51)
-        return 0;
-
-    if (pointA === pointB)
-        return 3;
-
-    if (pointA >= 51 && pointB < 51)
-        return 1;
-
-    if (pointA < 51 && pointB >= 51)
-        return 2;
-
-    return pointA > pointB ? 1 : 2;
 }
 
 function saveSet(pointA, setPointA, pointB, setPointB) {
@@ -184,18 +186,11 @@ async function deleteMatch(id) {
         headers: { "Content-Type": "application/json" },
     });
 
-    // TODO Set history
+    // TODO Delete set history
 
     const json = await res.json();
 
     return json;
-}
-
-async function getNextId() {
-    const response = await fetch(URL_NEXT_ID);
-    const json = await response.json();
-
-    return json[0].id + 1;
 }
 
 export default Game;

@@ -16,7 +16,7 @@ function TurnSet() {
     const [point2, setPoint2] = useState(0);
 
     return (
-        <div className="container-fluid">
+        <div className="container-fluid text-center">
             <TurnSetRow
                 col1={team1}
                 col2={<img src={vs_logo} alt='vs_icon' width='50px' />}

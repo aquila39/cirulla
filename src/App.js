@@ -9,7 +9,6 @@ import HistoryDetail from './components/HistoryDetail';
 function App() {
   return (
     <div className='App'>
-      <alert className='text-center'>I modali non si chiudono automaticamente, una volta confermata la scelta bisogna chiuderli manualmente</alert>
       <NavBar />
       <Routes>
         <Route path='/' element={<Home />} />
