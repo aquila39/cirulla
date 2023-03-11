@@ -159,13 +159,13 @@ function TurnSet() {
 
             <TurnSetRow
                 col1={<TurnSetInputNumber
-                    amount={0}
+                    amount={1}
                     point={point1}
                     updatePoint={setPoint1}
                 />}
                 col2={'PICCOLA'}
                 col3={<TurnSetInputNumber
-                    amount={0}
+                    amount={1}
                     point={point2}
                     updatePoint={setPoint2}
                 />}
