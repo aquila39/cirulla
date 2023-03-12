@@ -5,7 +5,7 @@ function Scoreboard(props) {
     const { teamA, teamB, pointA, pointB, setPointA, setPointB } = { ...props };
 
     return (
-        <div className='d-flex mt-3 text-light fs-1 text-uppercase'>
+        <div className='d-flex mt-3 text-light fs-1'>
 
             <ScoreboardTeam
                 team={teamA}
