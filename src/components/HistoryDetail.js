@@ -10,14 +10,28 @@ function HistoryDetail() {
         <div>
             {error && <div className='fs-1 text-center'>Match not found!</div>}
             {isPending && <div>Loading...</div>}
-            {game &&
-                <div>
-                    <p>{game.id}</p>
-                    <p>{game.nameA}</p>
-                    <p>{game.nameB}</p>
-                    <p>{game.pointA}</p>
-                    <p>{game.pointB}</p>
+            {game && <>
+
+                <h1 className='text-center my-2'>Resoconto partita</h1>
+                <div className='container text-center border mx-2 mx-lg-5'>
+                    <div className='row'>
+                        {game.createdAt && <p className='text-center'>Partita giocata il {game.createdAt}</p>}
+                    </div>
+
+                    <div className='row'>
+                        <div className='col pt-3'>
+                            <p className='fs-3 text-wrap'>{game.nameA}</p>
+                            <hr />
+                            <p className='fs-3'>{game.pointA}</p>
+                        </div>
+                        <div className='col pt-3'>
+                            <p className='fs-3 text-wrap'>{game.nameB}</p>
+                            <hr />
+                            <p className='fs-3'>{game.pointB}</p>
+                        </div>
+                    </div>
                 </div>
+            </>
             }
         </div>
     );

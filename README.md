@@ -1,6 +1,5 @@
 # TODO List
 - Game set
-- Fix error on new game create
 
 
 # Getting Started with Create React App

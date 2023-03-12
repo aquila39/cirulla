@@ -195,8 +195,6 @@ async function createMatch(nameA, nameB) {
 
     const json = await res.json();
 
-    console.log(res);
-
     return json.id;
 }
 
