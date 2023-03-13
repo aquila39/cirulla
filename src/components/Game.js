@@ -153,8 +153,8 @@ function Game() {
                 confirmColor={'success'}
                 confirmText={'Salva'}
                 confirmFunction={() => {
-                    setStatus('end')
-                    navigate(`/history/${gameId}`)
+                    setStatus('end');
+                    setTimeout(() => navigate(`/history/${gameId}`), 100);
                 }}
             />
 
