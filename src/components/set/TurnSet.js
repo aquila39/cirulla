@@ -55,25 +55,7 @@ function TurnSet() {
 
             <hr />
 
-            <TurnSetRow
-                col1={<TurnSetInputCheckbox
-                    id={'checkSettebello-1'}
-                    amount={1}
-                    pointSelf={point1}
-                    updatePointSelf={setPoint1}
-                    pointOther={point2}
-                    updatePointOther={setPoint2}
-                />}
-                col2={'SETTEBELLO'}
-                col3={<TurnSetInputCheckbox
-                    id={'checkSettebello-2'}
-                    amount={1}
-                    pointSelf={point2}
-                    updatePointSelf={setPoint2}
-                    pointOther={point1}
-                    updatePointOther={setPoint1}
-                />}
-            />
+
 
             <TurnSetRow
                 col1={<TurnSetInputCheckbox
@@ -127,6 +109,26 @@ function TurnSet() {
                 col2={'PRIMIERA'}
                 col3={<TurnSetInputCheckbox
                     id={'checkPrimiera-2'}
+                    amount={1}
+                    pointSelf={point2}
+                    updatePointSelf={setPoint2}
+                    pointOther={point1}
+                    updatePointOther={setPoint1}
+                />}
+            />
+
+            <TurnSetRow
+                col1={<TurnSetInputCheckbox
+                    id={'checkSettebello-1'}
+                    amount={1}
+                    pointSelf={point1}
+                    updatePointSelf={setPoint1}
+                    pointOther={point2}
+                    updatePointOther={setPoint2}
+                />}
+                col2={'SETTEBELLO'}
+                col3={<TurnSetInputCheckbox
+                    id={'checkSettebello-2'}
                     amount={1}
                     pointSelf={point2}
                     updatePointSelf={setPoint2}
