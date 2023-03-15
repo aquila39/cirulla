@@ -15,7 +15,7 @@ function HistoryDetail() {
                 <h1 className='text-center my-2'>Resoconto partita</h1>
                 <div className='container text-center border mx-2 mx-lg-5'>
                     <div className='row'>
-                        {game.createdAt && <p className='text-center'>Partita giocata il {game.createdAt}</p>}
+                        {game.createdAt && <p className='text-center'>Partita giocata il {new Date(game.createdAt).toLocaleString()}</p>}
                     </div>
 
                     <div className='row'>

@@ -205,7 +205,7 @@ async function updateMatch(id, nameA, nameB, pointA, pointB, status) {
         return;
 
     const res = await fetch(`${URL_HISTORY}/${match.id}`, {
-        method: 'PUT',
+        method: 'PATCH',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(match)
     });
