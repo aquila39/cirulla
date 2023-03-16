@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function TurnSetRowNumber(props) {
+function TurnSetInputNumber(props) {
 
     const { amount, point, updatePoint } = { ...props };
     const [count, setCount] = useState(0)
@@ -26,4 +26,4 @@ function TurnSetRowNumber(props) {
     );
 }
 
-export default TurnSetRowNumber;
+export default TurnSetInputNumber;

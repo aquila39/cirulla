@@ -1,5 +1,6 @@
 import TurnSetRow from "./TurnSetRow";
 import TurnSetInputNumber from "./TurnSetInputNumber";
+import TurnSetInputPiccola from "./TurnSetInputPiccola";
 import TurnSetInputCheckbox from "./TurnSetInputCheckbox";
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
@@ -160,14 +161,14 @@ function TurnSet() {
             />
 
             <TurnSetRow
-                col1={<TurnSetInputNumber
-                    amount={1}
+                col1={<TurnSetInputPiccola
+                    side={'left'}
                     point={point1}
                     updatePoint={setPoint1}
                 />}
                 col2={'PICCOLA'}
-                col3={<TurnSetInputNumber
-                    amount={1}
+                col3={<TurnSetInputPiccola
+                    side={'right'}
                     point={point2}
                     updatePoint={setPoint2}
                 />}
