@@ -2,6 +2,7 @@ import useFetch from './utility/Fetch';
 import { Link } from "react-router-dom";
 import vs_logo from '../img/VS_logo.png';
 import { URL_HISTORY } from './utility/URL';
+import Loading from './utility/Loading';
 
 function History() {
 
@@ -10,7 +11,7 @@ function History() {
     return (
         <div>
             {error && <div>{error}</div>}
-            {isPending && <div>Loading...</div>}
+            {isPending && <Loading />}
             {data && data.map(match => (
 
                 <Link

@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import useFetch from './utility/Fetch';
+import Loading from "./utility/Loading";
 import { URL_HISTORY } from './utility/URL';
 
 function HistoryDetail() {
@@ -9,7 +10,7 @@ function HistoryDetail() {
     return (
         <div>
             {error && <div className='fs-1 text-center'>Match not found!</div>}
-            {isPending && <div>Loading...</div>}
+            {isPending && <Loading />}
             {game && <>
 
                 <h1 className='text-center my-2'>Resoconto partita</h1>
