@@ -24,7 +24,7 @@ function TurnSetInputPiccola(props) {
                         setCount(3);
                         updatePoint(point + 3);
                     }
-                    else if (count < 10) {
+                    else if (count < 6) {
                         setCount(count + 1);
                         updatePoint(point + 1);
                     }
