@@ -9,7 +9,7 @@ function History() {
     const { data, isPending, error } = useFetch(`${URL_HISTORY}?_sort=id&_order=desc`);
 
     return (
-        <div>
+        <div id='mainHistory'>
             {error && <div>{error}</div>}
             {isPending && <Loading />}
             {data && data.map(match => (
@@ -43,7 +43,7 @@ function History() {
 
             ))
             }
-        </div >
+        </div>
     );
 }
 

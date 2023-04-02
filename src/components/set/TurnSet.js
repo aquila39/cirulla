@@ -23,6 +23,11 @@ function TurnSet() {
                 col2={<img src={vs_logo} alt='vs_icon' width='50px' />}
                 col3={team2}
             />
+            <TurnSetRow
+                col1={document.getElementById('lblPointA').textContent}
+                col2={null}
+                col3={document.getElementById('lblPointB').textContent}
+            />
 
             <hr className='mt-1' />
 

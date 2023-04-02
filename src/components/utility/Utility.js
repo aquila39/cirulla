@@ -9,16 +9,18 @@ export async function getNextId() {
 
 export function checkWinner(pointA, pointB) {
 
-    if (pointA < 51 && pointB < 51)
+    const winPoint = 52;
+
+    if (pointA < winPoint && pointB < winPoint)
         return 0;
 
     if (pointA === pointB)
         return 3;
 
-    if (pointA >= 51 && pointB < 51)
+    if (pointA >= winPoint && pointB < winPoint)
         return 1;
 
-    if (pointA < 51 && pointB >= 51)
+    if (pointA < winPoint && pointB >= winPoint)
         return 2;
 
     return pointA > pointB ? 1 : 2;
